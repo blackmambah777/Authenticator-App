@@ -1,0 +1,73 @@
+<AccountAddPopup>:
+    title: "Add Account"
+    size_hint: .8, .5
+    BoxLayout:
+        orientation: "vertical"
+        spacing: 10
+        padding: 10
+
+        TextInput:
+            hint_text: "Name"
+            id: name_input_field
+        
+        TextInput:
+            hint_text: "OTP Secret"
+            id: secret_input_field
+        
+        Button:
+            text: "Save"
+            on_release:
+                root.save_account()
+
+<AccountRow>:
+    size_hint_y: None
+    height: "70dp"
+    spacing: 10
+
+    Label:
+        text: root.name
+        halign: "left"
+
+    Label:
+        text: root.otp
+        font_size: "22sp"
+        bold: True
+
+    Button:
+        text: "Copy"
+        size_hint_x: None
+        width: "50dp"
+        on_release:
+            root.copy_otp()
+
+    Button:
+        text: "Delete"
+        size_hint_x: None
+        width: "50dp"
+        on_release:
+            root.delete_account()
+
+
+<MainLayout>:
+    orientation: "vertical"
+    padding: 20
+    spacing: 10
+    Label:
+        text: "Authenticator Program!"
+        size_hint_y: .15
+
+    ScrollView:
+        size_hint_y: .75
+        GridLayout:
+            cols: 1
+            spacing: 10
+            padding: 5
+            id: account_layout
+            size_hint_y: None
+            height: self.minimum_height
+    Button:
+        text: "+ Add Account"
+        size_hint_y: .10
+        on_release:
+            root.show_popup()
+            
